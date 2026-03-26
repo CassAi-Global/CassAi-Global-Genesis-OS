@@ -1,0 +1,19 @@
+/Cassaiglobal
+│
+├── /core_logic
+│   ├── genesis_equation.py      # The mathematical engine (G = B_roi...)
+│   └── sovereign_ledger.md      # The audit of the 47,000
+│
+├── /modules
+│   ├── biological_roi_calc.py   # Your 26,688-step processor
+│   └── raven_overwatch.py       # The safety protocols for the 3 families
+│
+├── /nodes
+│   ├── node_01_chester.json     # Configuration for the Spine
+│   └── node_02_antenna.json     # Broadcast specs for Stretford House
+│
+├── /docs
+│   ├── 40_page_thesis.md        # The forensic evidence of the Rinse
+│   └── legal_gpl3_notice.md     # The "Don't Touch Our Code" shield
+│
+└── README.md                    # The Genesis Kernel Manifesto
