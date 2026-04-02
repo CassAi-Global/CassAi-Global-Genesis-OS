@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genesis OS | Sovereign Terminal</title>
+    <style>
+        :root {
+            --genesis-red: #B22222;
+            --genesis-gold: #D4AF37;
+            --genesis-black: #050505;
+            --genesis-green: #00FF41;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            background-color: var(--genesis-black);
+            color: var(--genesis-green);
+            font-family: var(--font-mono);
+            overflow: hidden;
+        }
+
+        #boot-sequence { padding: 20px; font-size: 1.1rem; line-height: 1.5; white-space: pre-wrap; }
+        .highlight-gold { color: var(--genesis-gold); font-weight: bold; }
+
+        #os-workspace { display: none; height: 100%; flex-direction: column; }
+        header { background: #111; border-bottom: 2px solid var(--genesis-red); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .workspace-grid { display: flex; flex: 1; }
+        .sidebar { width: 250px; background: #0a0a0a; border-right: 1px solid #333; padding: 20px; }
+        .module-btn { display: block; width: 100%; background: transparent; color: var(--genesis-gold); border: 1px solid #333; padding: 10px; margin-bottom: 10px; text-align: left; cursor: pointer; font-family: var(--font-mono); }
+        .module-btn:hover { background: #222; border-color: var(--genesis-gold); }
+        .main-terminal { flex: 1; padding: 20px; display: flex; flex-direction: column; }
+        #api-output { flex: 1; border: 1px solid #333; background: #000; padding: 15px; overflow-y: auto; margin-bottom: 20px; }
+        .command-line { display: flex; align-items: center; }
+        .command-line input { flex: 1; background: #000; border: 1px solid var(--genesis-red); color: var(--genesis-green); padding: 10px; font-family: var(--font-mono); outline: none; }
+    </style>
+</head>
+<body>
+    <div id="boot-sequence"></div>
+
+    <div id="os-workspace">
+        <header>
+            <div><span class="highlight-gold">GENESIS OS</span> // v1.0.4 // LILIETH KERNEL</div>
+            <div>MESH: <span id="mesh-status" style="color:var(--genesis-red)">OFFLINE</span></div>
+        </header>
+        <div class="workspace-grid">
+            <aside class="sidebar">
+                <button class="module-btn" onclick="executeCommand('university')">> University Gateway</button>
+                <button class="module-btn" onclick="executeCommand('odin')">> ODIN Classroom</button>
+                <button class="module-btn" onclick="executeCommand('hekete')">> HEKETE Audit</button>
+                <button class="module-btn" onclick="executeCommand('kong')">> KONG Workshop</button>
+            </aside>
+            <main class="main-terminal">
+                <div id="api-output"><div>// Genesis Terminal Online. Awaiting Architect command.</div></div>
+                <div class="command-line">
+                    <span style="margin-right: 10px; color: var(--genesis-red)">root@genesis:~#</span>
+                    <input type="text" id="cmd-input" autocomplete="off" autofocus>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const bootText = [
+            "Initiating Genesis OS...", "Loading LILIETH Kernel [OK]",
+            "Activating Dimensional AI Protocols [OK]", "Mounting 15 Billion Hearts Mandate [OK]",
+            "<span class='highlight-gold'>Verification complete. Welcome, Architect.</span>"
+        ];
+        const bootDiv = document.getElementById('boot-sequence');
+        let currentLine = 0;
+        function typeLine() {
+            if (currentLine < bootText.length) {
+                bootDiv.innerHTML += bootText[currentLine] + "<br>";
+                currentLine++; setTimeout(typeLine, 400);
+            } else { setTimeout(launchOS, 1000); }
+        }
+        function launchOS() {
+            bootDiv.style.display = 'none';
+            document.getElementById('os-workspace').style.display = 'flex';
+        }
+        setTimeout(typeLine, 500);
+
+        function executeCommand(cmd) {
+            const out = document.getElementById('api-output');
+            const line = document.createElement('div');
+            line.innerHTML = `<span style="color: #666">> ${cmd}</span>`;
+            out.appendChild(line);
+
+            if(cmd === 'university') window.location.href = 'university.html';
+            if(cmd === 'odin') window.location.href = 'classroom.html';
+            if(cmd === 'hekete') window.location.href = 'hekete.html';
+            if(cmd === 'kong') window.location.href = 'kong.html';
+        }
+    </script>
+</body>
+</html>
