@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODIN Classroom | CassAI University</title>
+    <style>
+        :root {
+            --odin-green: #00FF41;
+            --odin-gold: #D4AF37;
+            --odin-red: #B22222;
+            --bg: #050505;
+            --panel: #111;
+        }
+
+        body {
+            margin: 0; background: var(--bg); color: var(--odin-green);
+            font-family: 'Courier New', Courier, monospace;
+            display: flex; flex-direction: column; height: 100vh;
+        }
+
+        header {
+            padding: 15px 30px; background: var(--panel);
+            border-bottom: 2px solid var(--odin-red);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .main-layout {
+            display: grid; grid-template-columns: 1fr 1.5fr 1fr;
+            flex: 1; overflow: hidden; gap: 10px; padding: 10px;
+        }
+
+        .pane {
+            background: rgba(17, 17, 17, 0.9);
+            border: 1px solid #333;
+            display: flex; flex-direction: column;
+            border-radius: 4px;
+        }
+
+        .pane-header {
+            padding: 10px; background: #222;
+            font-weight: bold; color: var(--odin-gold);
+            border-bottom: 1px solid #333;
+            text-transform: uppercase; font-size: 0.8rem;
+        }
+
+        .content { flex: 1; padding: 15px; overflow-y: auto; font-size: 0.9rem; }
+
+        /* The Translation Layer Styles */
+        .ai-thought { color: #888; font-style: italic; margin-bottom: 15px; }
+        .key-takeaway { 
+            background: rgba(178, 34, 34, 0.1); 
+            border-left: 3px solid var(--odin-red);
+            padding: 10px; margin: 10px 0;
+        }
+
+        .forge-input {
+            width: 100%; background: #000; border: 1px solid var(--odin-green);
+            color: var(--odin-green); padding: 10px; height: 100px;
+            font-family: inherit; margin-top: 10px;
+        }
+
+        button.action-btn {
+            background: var(--odin-red); color: white; border: none;
+            padding: 10px; cursor: pointer; font-weight: bold; margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>MEMBER: Paul_Cassidy // LEVEL: ARCHITECT</div>
+    <div style="color: var(--odin-gold);">NODE: STRETFORD_UNI_01 // MENTOR: ODIN</div>
+</header>
+
+<div class="main-layout">
+    <div class="pane">
+        <div class="pane-header">Source Document: ArXiv_2403.001</div>
+        <div class="content">
+            <h4 style="color: #fff;">Title: Multi-Agent Reinforcement Learning in Stochastic Games</h4>
+            <p style="font-size: 0.8rem; color: #666;">[RAW ACADEMIC DATA]</p>
+            <p>Abstract: We investigate the convergence properties of Q-learning in non-cooperative games. By utilizing the Bellman optimality equation in a multi-dimensional vector space...</p>
+            <p>...This leads to the derivation of the Nash Equilibrium within a decentralized node network...</p>
+        </div>
+    </div>
+
+    <div class="pane">
+        <div class="pane-header">ODIN: Animus Translation (Cogniflux Style)</div>
+        <div class="content">
+            <div class="ai-thought">// Paul, I've stripped the math fluff. Here is the logic for your Mesh:</div>
+            
+            <p>The paper is basically explaining how <strong>multiple AIs can talk to each other</strong> without a boss telling them what to do. They use a "Trial and Error" system to find the best way to share data.</p>
+            
+            <div class="key-takeaway">
+                <strong>CORE LOGIC:</strong> Every phone in your Stretford Mesh needs to "bet" on which neighbor has the fastest connection. If the bet wins, the path is saved.
+            </div>
+
+            <p>Think of it like the <strong>Spider-Web Handshake</strong>. You don't need a central server; you just need the nodes to agree on the shortest path.</p>
+        </div>
+    </div>
+
+    <div class="pane">
+        <div class="pane-header">The Forge: Practical Application</div>
+        <div class="content">
+            <p><strong>TASK:</strong> Write a basic Python function that simulates a "Handshake" between two local nodes.</p>
+            <textarea class="forge-input" placeholder="def node_handshake(node_a, node_b): ..."></textarea>
+            <button class="action-btn" onclick="alert('Logic Logged to Sovereign Ledger')">SUBMIT TO AUDIT</button>
+            
+            <div style="margin-top: 20px; font-size: 0.75rem; color: #555;">
+                // Reward: 50 Real World Learning (RWL) Credits
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
