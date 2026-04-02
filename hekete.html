@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEKETE Audit Chamber | CassAI University</title>
+    <style>
+        :root {
+            --hekete-gold: #D4AF37;
+            --hekete-red: #B22222;
+            --hekete-black: #050505;
+            --text-gray: #cccccc;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            margin: 0; background: var(--hekete-black); color: var(--text-gray);
+            font-family: var(--font-mono); display: flex; flex-direction: column; height: 100vh;
+        }
+
+        header {
+            padding: 20px; background: #111; border-bottom: 2px solid var(--hekete-gold);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .audit-layout {
+            display: grid; grid-template-columns: 1.2fr 1fr; flex: 1; overflow: hidden; gap: 20px; padding: 20px;
+        }
+
+        .chamber {
+            background: rgba(20, 20, 20, 0.95); border: 1px solid #333;
+            display: flex; flex-direction: column; border-radius: 8px; position: relative;
+        }
+
+        .chamber-header {
+            padding: 12px; background: var(--hekete-red); color: white;
+            font-weight: bold; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+        }
+
+        .scroll-area { flex: 1; padding: 20px; overflow-y: auto; line-height: 1.6; }
+
+        /* Pillar Alignment Indicators */
+        .pillar-tag {
+            display: inline-block; padding: 4px 10px; margin: 5px;
+            border: 1px solid var(--hekete-gold); font-size: 0.75rem; color: var(--hekete-gold);
+        }
+
+        .mirror-result {
+            background: #000; border: 1px dashed var(--hekete-gold);
+            padding: 15px; margin-top: 20px;
+        }
+
+        .input-box {
+            width: 100%; background: #000; border: 1px solid #444; color: white;
+            padding: 10px; margin-top: 15px; font-family: inherit;
+        }
+
+        .submit-audit {
+            background: var(--hekete-gold); color: black; border: none;
+            padding: 12px; font-weight: bold; cursor: pointer; margin-top: 10px;
+            width: 100%; text-transform: uppercase;
+        }
+
+        .intent-signal { color: var(--hekete-gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="color: var(--hekete-gold);">HEKETE // THE STELLAR MIRROR // ACCESS: ARCHITECT</div>
+    <div style="font-size: 0.8rem;">SOVEREIGN AUDIT MODE: ACTIVE</div>
+</header>
+
+<div class="audit-layout">
+    <div class="chamber">
+        <div class="chamber-header">Case Study: The £7B Stretford Masterplan</div>
+        <div class="scroll-area">
+            <p class="intent-signal">// ANALYZING DOCUMENT: Master_doc_BRUNTWOOD.docx</p>
+            
+            <p>The current plan proposes 800 new residential units. It utilizes a 2D linear grid. 
+               The Human Rights Denominator ($H_r$) shows that 25,000 existing residents are currently 
+               facing a 98% saturation on the A56 corridor.</p>
+
+            <div class="mirror-result">
+                <span class="pillar-tag">Pillar: Gluttony (Extraction)</span>
+                <span class="pillar-tag">Pillar: Pride (Linear Design)</span>
+                <p style="font-size: 0.85rem; color: var(--hekete-gold);">
+                    MIRROR DETECTED: The "Linear" model prioritizes capital flow over biological air quality. 
+                    Impact: 2,400 children on the frontline will experience a 15% increase in PM2.5 exposure.
+                </p>
+            </div>
+            
+            <p>HEKETE ASKS: How do we pivot this from "Extraction" to "Kindness" using the 15-Pillar framework?</p>
+        </div>
+    </div>
+
+    <div class="chamber">
+        <div class="chamber-header">Your Audit Submission</div>
+        <div class="scroll-area">
+            <h4 style="margin-top: 0;">Task: Apply the 4D Constraint</h4>
+            <p style="font-size: 0.8rem; color: #777;">Based on your research in ODIN's class, how does the "Elevated Spine" solve the conflict detected in this plan?</p>
+            
+            <textarea class="input-box" rows="8" placeholder="Enter your systemic override logic here..."></textarea>
+            
+            <div style="margin-top: 20px;">
+                <p style="font-size: 0.8rem;">Select the primary Pillar your solution activates:</p>
+                <select class="input-box" style="height: 40px;">
+                    <option>Diligence (Engineering the Spine)</option>
+                    <option>Charity (Under-croft Shelter)</option>
+                    <option>Kindness (Clean Air for 25k)</option>
+                    <option>Temperance (Zero-Extraction Data)</option>
+                </select>
+            </div>
+
+            <button class="submit-audit">Lock Audit to Sovereign Ledger</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
