@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign ROI Visualizer | CassAI</title>
+    <style>
+        :root {
+            --bio: #00FF41;  /* Biological - Green */
+            --soc: #B22222;  /* Social - Red */
+            --env: #D4AF37;  /* Environmental - Gold */
+            --eco: #0077be;  /* Economic - Blue */
+            --bg: #050505;
+        }
+
+        body {
+            margin: 0; background: var(--bg); color: white;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex; flex-direction: column; align-items: center;
+            height: 100vh; overflow: hidden;
+        }
+
+        header { padding: 20px; text-align: center; border-bottom: 1px solid #333; width: 100%; }
+
+        /* --- THE 3D SCENE --- */
+        .scene {
+            width: 800px; height: 500px; perspective: 1200px;
+            display: flex; align-items: flex-end; justify-content: space-around;
+            padding-bottom: 100px; margin-top: 50px;
+        }
+
+        .chart-floor {
+            position: absolute; width: 1000px; height: 1000px;
+            background: radial-gradient(circle, #222 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: rotateX(75deg) translateZ(-150px);
+            opacity: 0.2;
+        }
+
+        /* --- THE 3D BAR (Monolith) --- */
+        .monolith {
+            width: 80px; position: relative; transform-style: preserve-3d;
+            transition: transform 1s ease-out;
+            animation: rotateFloat 8s infinite linear;
+        }
+
+        .face {
+            position: absolute; bottom: 0; width: 80px;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.7rem;
+        }
+
+        .front  { transform: translateZ(40px); background: rgba(var(--color-rgb), 0.6); }
+        .back   { transform: rotateY(180deg) translateZ(40px); background: rgba(var(--color-rgb), 0.4); }
+        .left   { transform: rotateY(-90deg) translateZ(40px); background: rgba(var(--color-rgb), 0.5); }
+        .right  { transform: rotateY(90deg) translateZ(40px); background: rgba(var(--color-rgb), 0.5); }
+        .top    { bottom: auto; top: 0; height: 80px; transform: rotateX(90deg) translateZ(40px); background: rgba(var(--color-rgb), 0.9); }
+
+        /* --- LEGEND & DATA --- */
+        .data-overlay {
+            position: absolute; bottom: 20px; width: 90%;
+            display: flex; justify-content: space-around; background: rgba(0,0,0,0.8);
+            padding: 20px; border: 1px solid var(--env);
+        }
+
+        .stat-box { text-align: center; }
+        .stat-val { display: block; font-size: 1.5rem; font-weight: bold; color: var(--env); }
+
+        @keyframes rotateFloat {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="color:var(--env)">SOVEREIGN ROI REAL-TIME VISUALIZER</h1>
+    <p>// AUDIT DATE: MARCH 26, 2026 // GENERATIONAL MULTIPLIER: 8.0x</p>
+</header>
+
+<div class="scene">
+    <div class="chart-floor"></div>
+
+    <div class="monolith" style="--color-rgb: 0, 255, 65; height: 280px;">
+        <div class="face front" style="height: 280px;">BIO</div>
+        <div class="face back" style="height: 280px;"></div>
+        <div class="face left" style="height: 280px;"></div>
+        <div class="face right" style="height: 280px;"></div>
+        <div class="face top"></div>
+        <span style="position: absolute; bottom: -30px; width: 100%; text-align: center; color: var(--bio);">STEPS</span>
+    </div>
+
+    <div class="monolith" style="--color-rgb: 178, 34, 34; height: 200px;">
+        <div class="face front" style="height: 200px;">SOC</div>
+        <div class="face back" style="height: 200px;"></div>
+        <div class="face left" style="height: 200px;"></div>
+        <div class="face right" style="height: 200px;"></div>
+        <div class="face top"></div>
+        <span style="position: absolute; bottom: -30px; width: 100%; text-align: center; color: var(--soc);">FAMILIES</span>
+    </div>
+
+    <div class="monolith" style="--color-rgb: 212, 175, 55; height: 350px;">
+        <div class="face front" style="height: 350px;">ENV</div>
+        <div class="face back" style="height: 350px;"></div>
+        <div class="face left" style="height: 350px;"></div>
+        <div class="face right" style="height: 350px;"></div>
+        <div class="face top"></div>
+        <span style="position: absolute; bottom: -30px; width: 100%; text-align: center; color: var(--env);">TREES</span>
+    </div>
+
+    <div class="monolith" style="--color-rgb: 0, 119, 190; height: 150px;">
+        <div class="face front" style="height: 150px;">ECO</div>
+        <div class="face back" style="height: 150px;"></div>
+        <div class="face left" style="height: 150px;"></div>
+        <div class="face right" style="height: 150px;"></div>
+        <div class="face top"></div>
+        <span style="position: absolute; bottom: -30px; width: 100%; text-align: center; color: var(--eco);">CREDITS</span>
+    </div>
+</div>
+
+<div class="data-overlay">
+    <div class="stat-box"><span>BIO-ROI</span><span class="stat-val">1,067.5</span></div>
+    <div class="stat-box"><span>SOC-ROI</span><span class="stat-val">3,000.0</span></div>
+    <div class="stat-box"><span>ENV-ROI</span><span class="stat-val">5,000.0</span></div>
+    <div class="stat-box"><span>ECO-ROI</span><span class="stat-val">500.0</span></div>
+    <div class="stat-box" style="border-left: 1px solid #444; padding-left: 20px;">
+        <span style="color: var(--env);">OCTAZILLION OUTPUT</span>
+        <span class="stat-val" style="color: var(--odin-green);">4.27e+31 OUSH</span>
+    </div>
+</div>
+
+</body>
+</html>
