@@ -55,7 +55,7 @@
         .command-line { display: flex; align-items: center; border-top: 1px solid #333; padding-top: 10px; }
         .command-line input { flex: 1; background: transparent; border: none; color: var(--genesis-green); padding: 10px; font-family: var(--font-mono); font-size: 1.1rem; outline: none; }
 
-        /* --- VISUAL FEED (Right Side) --- */
+        /* --- VISUAL FEED (The Map & Mesh) --- */
         .visual-feed { width: 380px; border-left: 1px solid #333; background: rgba(5,5,5,0.9); padding: 15px; display: flex; flex-direction: column; gap: 20px; }
         .feed-panel { border: 1px solid #333; padding: 10px; background: #000; }
         .feed-label { font-size: 0.7rem; color: var(--genesis-gold); margin-bottom: 8px; font-weight: bold; }
@@ -82,7 +82,6 @@
                 <button class="module-btn" onclick="executeCommand('odin')">> ODIN Classroom</button>
                 <button class="module-btn" onclick="executeCommand('hekete')">> HEKETE Audit</button>
                 <button class="module-btn" onclick="executeCommand('kong')">> KONG Workshop</button>
-                <button class="module-btn" onclick="executeCommand('clear')">> Clear Terminal</button>
             </aside>
 
             <main class="main-terminal">
@@ -97,7 +96,7 @@
                 <div class="feed-panel">
                     <div class="feed-label">DIMENSIONAL_GOVERNANCE_MAP</div>
                     <img src="https://raw.githubusercontent.com/CassAi-Global/CassAi-Global-Genesis-OS/main/soverer.jpg" 
-                         style="width: 100%; filter: grayscale(1) brightness(1.2) sepia(1) hue-rotate(90deg);">
+                         style="width: 100%; border: 1px solid #333; filter: grayscale(1) brightness(1.2) sepia(1) hue-rotate(90deg);">
                 </div>
 
                 <div class="feed-panel">
@@ -109,31 +108,31 @@
     </div>
 
     <script>
-        /* --- MATRIX RAIN --- */
+        /* --- MATRIX RAIN LOGIC --- */
         const mCanvas = document.getElementById('matrix-canvas');
         const mCtx = mCanvas.getContext('2d');
         mCanvas.width = window.innerWidth;
         mCanvas.height = window.innerHeight;
-        const chars = "01010101010101010101010101010101";
-        const drops = Array(Math.floor(mCanvas.width / 20)).fill(1);
+        const chars = "0101010101010101";
+        const fontSize = 15;
+        const drops = Array(Math.floor(mCanvas.width / fontSize)).fill(1);
         function drawMatrix() {
             mCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
             mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
             mCtx.fillStyle = "#00FF41";
-            mCtx.font = "15px monospace";
+            mCtx.font = fontSize + "px monospace";
             drops.forEach((y, i) => {
                 const text = chars[Math.floor(Math.random() * chars.length)];
-                mCtx.fillText(text, i * 20, y * 20);
-                if (y * 20 > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                mCtx.fillText(text, i * fontSize, y * fontSize);
+                if (y * fontSize > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
                 drops[i]++;
             });
         }
         setInterval(drawMatrix, 50);
 
-        /* --- BOOT LOGIC --- */
+        /* --- BOOT SEQUENCE --- */
         const bootText = [
             "DECRYPTING LILIETH KERNEL...",
-            "BYPASSING LINEAR GOVERNANCE...",
             "ESTABLISHING WEBRTC HANDSHAKE [STRETFORD_NODE]",
             "MOUNTING 15 PILLAR GEOMETRY...",
             "OCTAZILLION MULTIPLIER ENGAGED.",
@@ -145,18 +144,16 @@
             if (currentLine < bootText.length) {
                 bootDiv.innerHTML += bootText[currentLine] + "<br>";
                 currentLine++; setTimeout(typeLine, 300);
-            } else { setTimeout(launchOS, 800); }
-        }
-        function launchOS() {
-            bootDiv.style.display = 'none';
-            document.getElementById('os-workspace').style.display = 'flex';
+            } else { setTimeout(() => {
+                bootDiv.style.display = 'none';
+                document.getElementById('os-workspace').style.display = 'flex';
+            }, 800); }
         }
         setTimeout(typeLine, 500);
 
-        /* --- COMMANDS --- */
+        /* --- TERMINAL COMMANDS --- */
         const cmdInput = document.getElementById('cmd-input');
         const out = document.getElementById('api-output');
-
         cmdInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 executeCommand(cmdInput.value);
@@ -176,30 +173,18 @@
             else if(c === 'odin') window.location.href = 'classroom.html';
             else if(c === 'hekete') window.location.href = 'hekete.html';
             else if(c === 'kong') window.location.href = 'kong.html';
-            else if(c === 'clear') out.innerHTML = '';
-            else {
-                const err = document.createElement('div');
-                err.style.color = "var(--genesis-red)";
-                err.innerText = "Error: Protocol not recognized.";
-                out.appendChild(err);
-            }
         }
 
-        /* --- MESH PULSE --- */
-        const meshCanvas = document.getElementById('meshCanvas');
-        const mX = meshCanvas.getContext('2d');
+        /* --- MESH PULSE ANIMATION --- */
+        const canvas = document.getElementById('meshCanvas');
+        const ctx = canvas.getContext('2d');
         let r = 0;
         function drawPulse() {
-            mX.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
-            mX.strokeStyle = "var(--genesis-green)";
-            mX.lineWidth = 2;
-            mX.beginPath(); mX.arc(meshCanvas.width/2, meshCanvas.height/2, r, 0, Math.PI*2); mX.stroke();
-            r = (r + 1) % 80;
-            // Draw Nodes
-            mX.fillStyle = "var(--genesis-gold)";
-            [[20,20], [150,40], [100,120]].forEach(p => {
-                mX.beginPath(); mX.arc(p[0], p[1], 3, 0, Math.PI*2); mX.fill();
-            });
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.strokeStyle = "#00FF41";
+            ctx.lineWidth = 2;
+            ctx.beginPath(); ctx.arc(canvas.width/2, canvas.height/2, r, 0, Math.PI*2); ctx.stroke();
+            r = (r + 1) % 60;
             requestAnimationFrame(drawPulse);
         }
         drawPulse();
