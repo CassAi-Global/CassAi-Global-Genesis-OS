@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KONG Workshop | TechWorX Inventory</title>
+    <style>
+        :root {
+            --kong-orange: #FF8C00;
+            --kong-steel: #708090;
+            --bg: #0a0a0a;
+            --panel: #161616;
+            --danger: #B22222;
+        }
+
+        body {
+            margin: 0; background: var(--bg); color: #fff;
+            font-family: 'Inter', sans-serif; display: flex; flex-direction: column; height: 100vh;
+        }
+
+        header {
+            padding: 20px; background: var(--panel); border-bottom: 3px solid var(--kong-orange);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .workshop-grid {
+            display: grid; grid-template-columns: 300px 1fr; flex: 1; overflow: hidden;
+        }
+
+        /* --- INVENTORY SIDEBAR --- */
+        .inventory-list {
+            background: #111; border-right: 1px solid #333; padding: 20px; overflow-y: auto;
+        }
+
+        .item-card {
+            background: #1a1a1a; border: 1px solid #333; padding: 15px; margin-bottom: 15px;
+            border-radius: 4px; cursor: pointer;
+        }
+
+        .item-card:hover { border-color: var(--kong-orange); }
+        .status-tag { font-size: 0.7rem; padding: 2px 6px; border-radius: 3px; font-weight: bold; }
+        .ready { background: #00FF41; color: #000; }
+        .repair { background: var(--kong-orange); color: #000; }
+
+        /* --- THE BUILD STATION --- */
+        .build-station { padding: 30px; overflow-y: auto; }
+        
+        .blueprint-viewer {
+            width: 100%; height: 300px; background: #000; border: 2px dashed #444;
+            display: flex; align-items: center; justify-content: center; color: #666;
+            margin-bottom: 30px; position: relative;
+        }
+
+        .blueprint-viewer::before {
+            content: "4D SCHEMATIC LOADED"; position: absolute; top: 10px; left: 10px;
+            font-size: 0.7rem; color: var(--kong-orange);
+        }
+
+        .spec-table {
+            width: 100%; border-collapse: collapse; margin-top: 20px;
+        }
+
+        .spec-table th, .spec-table td {
+            text-align: left; padding: 12px; border-bottom: 1px solid #333;
+        }
+
+        .rwl-counter {
+            font-size: 2rem; font-weight: 900; color: var(--kong-orange);
+        }
+
+        .btn-action {
+            background: var(--kong-orange); color: #000; border: none;
+            padding: 15px 30px; font-weight: bold; cursor: pointer; text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="font-weight: 900; letter-spacing: 2px;">KONG // TECHWORX // NODE_04</div>
+    <div class="rwl-counter">1,250 <span style="font-size: 0.8rem;">RWL CREDITS</span></div>
+</header>
+
+<div class="workshop-grid">
+    <aside class="inventory-list">
+        <h3 style="margin-top: 0; color: var(--kong-orange);">RECLAIMED ASSETS</h3>
+        
+        <div class="item-card">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>Dell Optiplex 7050</strong>
+                <span class="status-tag ready">AVAILABLE</span>
+            </div>
+            <p style="font-size: 0.8rem; color: #888;">Assigned: Sovereign Node Build</p>
+        </div>
+
+        <div class="item-card">
+            <div style="display:flex; justify-content:space-between;">
+                <strong>Ender 3 V2 Printer</strong>
+                <span class="status-tag repair">CALIBRATING</span>
+            </div>
+            <p style="font-size: 0.8rem; color: #888;">Assigned: Spine-Bracket Proto</p>
+        </div>
+    </aside>
+
+    <main class="build-station">
+        <h2 style="margin-top: 0;">PROJECT: The 12-Foot Sovereign Slab</h2>
+        
+        <div class="blueprint-viewer">
+            [ 3D CROSS-SECTION: TYRE-CLAY REINFORCEMENT ]
+        </div>
+
+        <div class="build-info">
+            <h3>Material Audit (March 26)</h3>
+            <table class="spec-table">
+                <tr><th>Component</th><th>Quantity</th><th>Status</th></tr>
+                <tr><td>Reclaimed Tyres</td><td>2,400 Units</td><td style="color:var(--odin-green)">LOGGED</td></tr>
+                <tr><td>Local Clay Mix</td><td>15 Tons</td><td style="color:var(--odin-green)">ON-SITE</td></tr>
+                <tr><td>Sovereign Sensors</td><td>12 Nodes</td><td style="color:var(--kong-orange)">AWAITING FLASH</td></tr>
+            </table>
+
+            <div style="margin-top: 30px; display: flex; gap: 20px; align-items: center;">
+                <button class="btn-action">Log Physical Work</button>
+                <p style="font-size: 0.8rem; color: #666;">// This action generates Biological ROI for the 15-Pillar Audit.</p>
+            </div>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
