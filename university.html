@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online University for Gifted Minds | CassAI</title>
+    <style>
+        :root {
+            --red: #B22222;
+            --gold: #D4AF37;
+            --bg: #050505;
+            --panel: #111;
+            --text: #00FF41;
+            --font: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            margin: 0; padding: 0; background: var(--bg); color: var(--text);
+            font-family: var(--font); display: flex; flex-direction: column;
+            align-items: center; min-height: 100vh;
+        }
+
+        header {
+            width: 100%; background: var(--panel); border-bottom: 2px solid var(--gold);
+            padding: 20px; text-align: center;
+        }
+
+        h1 { color: var(--gold); margin: 0; letter-spacing: 2px; text-transform: uppercase; }
+        p.subtitle { color: #888; font-size: 0.9rem; margin-top: 5px; }
+
+        .container {
+            max-width: 800px; width: 90%; margin: 40px auto;
+        }
+
+        .animus-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+            margin-top: 30px;
+        }
+
+        .animus-card {
+            background: var(--panel); border: 1px solid #333; border-left: 4px solid var(--red);
+            padding: 20px; cursor: pointer; transition: 0.3s;
+        }
+
+        .animus-card:hover { border-color: var(--gold); transform: translateY(-5px); background: #1a1a1a; }
+        .animus-card h3 { margin: 0 0 10px 0; color: #fff; }
+        .animus-card p { font-size: 0.85rem; color: #aaa; line-height: 1.4; }
+
+        .terminal-box {
+            margin-top: 40px; background: #000; border: 1px solid var(--gold);
+            padding: 20px; min-height: 150px;
+        }
+
+        .highlight { color: var(--gold); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Free Online University for Gifted Minds</h1>
+        <p class="subtitle">The Eternius Framework // Powered by CassAI // No Debt. No Boundaries.</p>
+    </header>
+
+    <div class="container">
+        <h2 style="color: var(--red);">> INITIALIZE NEURO-SOMATIC ALIGNMENT</h2>
+        <p style="color: #888;">Select your Animus Subtype to calibrate your AI Mentors (ODIN, HEKETE, KONG, LILIETH).</p>
+
+        <div class="animus-grid">
+            <div class="animus-card" onclick="selectAnimus('Cogniflux', 'Hyperfocus bursts, rapid idea generation. Assigned to Innovation Challenges.')">
+                <h3>Cogniflux</h3>
+                <p>Dynamic, high-energy, exploratory. You thrive on rapid idea generation and multi-tasking.</p>
+            </div>
+            <div class="animus-card" onclick="selectAnimus('Virtumind', 'Practical problem-solving. Assigned to TechWorX & Robotics.')">
+                <h3>Virtumind</h3>
+                <p>Talent-driven, applied STEM. You learn best by building, fixing, and crafting with your hands.</p>
+            </div>
+            <div class="animus-card" onclick="selectAnimus('Autocognitus', 'Introspective, deep thinker. Assigned to Sovereign Code & Logic.')">
+                <h3>Autocognitus</h3>
+                <p>Analytical and strategic. You need slow, deliberate time to deconstruct massive problems.</p>
+            </div>
+            <div class="animus-card" onclick="selectAnimus('Takwyn', 'Deep flow, self-regulated. Assigned to LILIETH Mentorship.')">
+                <h3>Takwyn</h3>
+                <p>Inspired by Takiwātanga. You thrive on your own timing, deeply resilient and patient.</p>
+            </div>
+        </div>
+
+        <div class="terminal-box" id="enrollment-terminal">
+            <div style="color: #666;">// Awaiting alignment selection...</div>
+        </div>
+    </div>
+
+    <script>
+        function selectAnimus(type, logic) {
+            const terminal = document.getElementById('enrollment-terminal');
+            terminal.innerHTML = `
+                <div style="color: var(--red);">> Calibrating curriculum for: <span class="highlight">${type}</span></div>
+                <div style="margin-top: 10px;">Establishing connection to Sovereign Mentors... [OK]</div>
+                <div>Applying ${type} logic gates: ${logic}</div>
+                <div style="margin-top: 15px; color: var(--gold);">> WELCOME TO THE UNIVERSITY. YOUR REAL-WORLD LEARNING (RWL) CREDITS START NOW.</div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
