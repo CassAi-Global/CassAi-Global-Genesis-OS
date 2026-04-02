@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genesis OS | Sovereign Terminal</title>
+    <title>Genesis OS | Sovereign Command</title>
     <style>
         :root {
             --genesis-red: #B22222;
@@ -21,59 +21,131 @@
             overflow: hidden;
         }
 
-        #boot-sequence { padding: 20px; font-size: 1.1rem; line-height: 1.5; white-space: pre-wrap; }
-        .highlight-gold { color: var(--genesis-gold); font-weight: bold; }
+        /* --- MATRIX RAIN CANVAS --- */
+        #matrix-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; opacity: 0.15;
+        }
 
-        #os-workspace { display: none; height: 100%; flex-direction: column; }
-        header { background: #111; border-bottom: 2px solid var(--genesis-red); padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
-        .workspace-grid { display: flex; flex: 1; }
-        .sidebar { width: 250px; background: #0a0a0a; border-right: 1px solid #333; padding: 20px; }
-        .module-btn { display: block; width: 100%; background: transparent; color: var(--genesis-gold); border: 1px solid #333; padding: 10px; margin-bottom: 10px; text-align: left; cursor: pointer; font-family: var(--font-mono); }
-        .module-btn:hover { background: #222; border-color: var(--genesis-gold); }
-        .main-terminal { flex: 1; padding: 20px; display: flex; flex-direction: column; }
-        #api-output { flex: 1; border: 1px solid #333; background: #000; padding: 15px; overflow-y: auto; margin-bottom: 20px; }
-        .command-line { display: flex; align-items: center; }
-        .command-line input { flex: 1; background: #000; border: 1px solid var(--genesis-red); color: var(--genesis-green); padding: 10px; font-family: var(--font-mono); outline: none; }
+        #boot-sequence { padding: 40px; font-size: 1.2rem; line-height: 1.6; z-index: 10; position: relative; }
+        .highlight-gold { color: var(--genesis-gold); text-shadow: 0 0 10px var(--genesis-gold); }
+
+        #os-workspace { display: none; height: 100%; flex-direction: column; z-index: 5; position: relative; }
+
+        header { 
+            background: rgba(17, 17, 17, 0.9); border-bottom: 2px solid var(--genesis-red); 
+            padding: 10px 20px; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 0 20px var(--genesis-red);
+        }
+
+        .workspace-grid { display: flex; flex: 1; overflow: hidden; }
+
+        /* --- SIDEBAR --- */
+        .sidebar { width: 260px; background: rgba(10, 10, 10, 0.9); border-right: 1px solid #333; padding: 20px; }
+        .module-btn { 
+            display: block; width: 100%; background: transparent; color: var(--genesis-gold); 
+            border: 1px solid #333; padding: 12px; margin-bottom: 12px; text-align: left; 
+            cursor: pointer; font-family: var(--font-mono); transition: 0.3s;
+        }
+        .module-btn:hover { background: var(--genesis-red); color: white; border-color: white; box-shadow: 0 0 10px var(--genesis-red); }
+
+        /* --- TERMINAL --- */
+        .main-terminal { flex: 1; padding: 20px; display: flex; flex-direction: column; background: rgba(0,0,0,0.7); }
+        #api-output { flex: 1; border: 1px solid #222; background: rgba(0,0,0,0.8); padding: 20px; overflow-y: auto; margin-bottom: 20px; font-size: 0.95rem; }
+        .command-line { display: flex; align-items: center; border-top: 1px solid #333; padding-top: 10px; }
+        .command-line input { flex: 1; background: transparent; border: none; color: var(--genesis-green); padding: 10px; font-family: var(--font-mono); font-size: 1.1rem; outline: none; }
+
+        /* --- VISUAL FEED (Right Side) --- */
+        .visual-feed { width: 380px; border-left: 1px solid #333; background: rgba(5,5,5,0.9); padding: 15px; display: flex; flex-direction: column; gap: 20px; }
+        .feed-panel { border: 1px solid #333; padding: 10px; background: #000; }
+        .feed-label { font-size: 0.7rem; color: var(--genesis-gold); margin-bottom: 8px; font-weight: bold; }
+        
+        #meshCanvas { width: 100%; height: 180px; background: #000; }
     </style>
 </head>
 <body>
+
+    <canvas id="matrix-canvas"></canvas>
     <div id="boot-sequence"></div>
 
     <div id="os-workspace">
         <header>
-            <div><span class="highlight-gold">GENESIS OS</span> // v1.0.4 // LILIETH KERNEL</div>
-            <div>MESH: <span id="mesh-status" style="color:var(--genesis-red)">OFFLINE</span></div>
+            <div><span class="highlight-gold">GENESIS OS</span> // ARCHITECT_MODE // LILIETH_v1.0.4</div>
+            <div>STATUS: <span id="mesh-status" style="color:var(--genesis-green)">SYNCHRONIZED</span></div>
         </header>
+
         <div class="workspace-grid">
             <aside class="sidebar">
+                <div class="feed-label">SOVEREIGN_MODULES</div>
                 <button class="module-btn" onclick="executeCommand('university')">> University Gateway</button>
+                <button class="module-btn" onclick="executeCommand('roi')">> ROI Visualizer</button>
                 <button class="module-btn" onclick="executeCommand('odin')">> ODIN Classroom</button>
                 <button class="module-btn" onclick="executeCommand('hekete')">> HEKETE Audit</button>
                 <button class="module-btn" onclick="executeCommand('kong')">> KONG Workshop</button>
+                <button class="module-btn" onclick="executeCommand('clear')">> Clear Terminal</button>
             </aside>
+
             <main class="main-terminal">
-                <div id="api-output"><div>// Genesis Terminal Online. Awaiting Architect command.</div></div>
+                <div id="api-output"><div>// Welcome, Paul. The 15 Billion Hearts Mandate is active.</div></div>
                 <div class="command-line">
-                    <span style="margin-right: 10px; color: var(--genesis-red)">root@genesis:~#</span>
+                    <span style="margin-right: 10px; color: var(--genesis-red); font-weight: bold;">ARCHITECT@GENESIS:~$</span>
                     <input type="text" id="cmd-input" autocomplete="off" autofocus>
                 </div>
             </main>
+
+            <section class="visual-feed">
+                <div class="feed-panel">
+                    <div class="feed-label">DIMENSIONAL_GOVERNANCE_MAP</div>
+                    <img src="https://raw.githubusercontent.com/CassAi-Global/CassAi-Global-Genesis-OS/main/soverer.jpg" 
+                         style="width: 100%; filter: grayscale(1) brightness(1.2) sepia(1) hue-rotate(90deg);">
+                </div>
+
+                <div class="feed-panel">
+                    <div class="feed-label">LIVE_MESH_PULSE (STRETFORD_NODE_01)</div>
+                    <canvas id="meshCanvas"></canvas>
+                </div>
+            </section>
         </div>
     </div>
 
     <script>
+        /* --- MATRIX RAIN --- */
+        const mCanvas = document.getElementById('matrix-canvas');
+        const mCtx = mCanvas.getContext('2d');
+        mCanvas.width = window.innerWidth;
+        mCanvas.height = window.innerHeight;
+        const chars = "01010101010101010101010101010101";
+        const drops = Array(Math.floor(mCanvas.width / 20)).fill(1);
+        function drawMatrix() {
+            mCtx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            mCtx.fillRect(0, 0, mCanvas.width, mCanvas.height);
+            mCtx.fillStyle = "#00FF41";
+            mCtx.font = "15px monospace";
+            drops.forEach((y, i) => {
+                const text = chars[Math.floor(Math.random() * chars.length)];
+                mCtx.fillText(text, i * 20, y * 20);
+                if (y * 20 > mCanvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
+        }
+        setInterval(drawMatrix, 50);
+
+        /* --- BOOT LOGIC --- */
         const bootText = [
-            "Initiating Genesis OS...", "Loading LILIETH Kernel [OK]",
-            "Activating Dimensional AI Protocols [OK]", "Mounting 15 Billion Hearts Mandate [OK]",
-            "<span class='highlight-gold'>Verification complete. Welcome, Architect.</span>"
+            "DECRYPTING LILIETH KERNEL...",
+            "BYPASSING LINEAR GOVERNANCE...",
+            "ESTABLISHING WEBRTC HANDSHAKE [STRETFORD_NODE]",
+            "MOUNTING 15 PILLAR GEOMETRY...",
+            "OCTAZILLION MULTIPLIER ENGAGED.",
+            "<span class='highlight-gold'>SYSTEM ACCESS GRANTED. WELCOME ARCHITECT.</span>"
         ];
         const bootDiv = document.getElementById('boot-sequence');
         let currentLine = 0;
         function typeLine() {
             if (currentLine < bootText.length) {
                 bootDiv.innerHTML += bootText[currentLine] + "<br>";
-                currentLine++; setTimeout(typeLine, 400);
-            } else { setTimeout(launchOS, 1000); }
+                currentLine++; setTimeout(typeLine, 300);
+            } else { setTimeout(launchOS, 800); }
         }
         function launchOS() {
             bootDiv.style.display = 'none';
@@ -81,17 +153,56 @@
         }
         setTimeout(typeLine, 500);
 
+        /* --- COMMANDS --- */
+        const cmdInput = document.getElementById('cmd-input');
+        const out = document.getElementById('api-output');
+
+        cmdInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                executeCommand(cmdInput.value);
+                cmdInput.value = '';
+            }
+        });
+
         function executeCommand(cmd) {
-            const out = document.getElementById('api-output');
             const line = document.createElement('div');
             line.innerHTML = `<span style="color: #666">> ${cmd}</span>`;
             out.appendChild(line);
+            out.scrollTop = out.scrollHeight;
 
-            if(cmd === 'university') window.location.href = 'university.html';
-            if(cmd === 'odin') window.location.href = 'classroom.html';
-            if(cmd === 'hekete') window.location.href = 'hekete.html';
-            if(cmd === 'kong') window.location.href = 'kong.html';
+            const c = cmd.toLowerCase();
+            if(c === 'university') window.location.href = 'university.html';
+            else if(c === 'roi') window.location.href = 'roi.html';
+            else if(c === 'odin') window.location.href = 'classroom.html';
+            else if(c === 'hekete') window.location.href = 'hekete.html';
+            else if(c === 'kong') window.location.href = 'kong.html';
+            else if(c === 'clear') out.innerHTML = '';
+            else {
+                const err = document.createElement('div');
+                err.style.color = "var(--genesis-red)";
+                err.innerText = "Error: Protocol not recognized.";
+                out.appendChild(err);
+            }
         }
+
+        /* --- MESH PULSE --- */
+        const meshCanvas = document.getElementById('meshCanvas');
+        const mX = meshCanvas.getContext('2d');
+        let r = 0;
+        function drawPulse() {
+            mX.clearRect(0, 0, meshCanvas.width, meshCanvas.height);
+            mX.strokeStyle = "var(--genesis-green)";
+            mX.lineWidth = 2;
+            mX.beginPath(); mX.arc(meshCanvas.width/2, meshCanvas.height/2, r, 0, Math.PI*2); mX.stroke();
+            r = (r + 1) % 80;
+            // Draw Nodes
+            mX.fillStyle = "var(--genesis-gold)";
+            [[20,20], [150,40], [100,120]].forEach(p => {
+                mX.beginPath(); mX.arc(p[0], p[1], 3, 0, Math.PI*2); mX.fill();
+            });
+            requestAnimationFrame(drawPulse);
+        }
+        drawPulse();
     </script>
 </body>
 </html>
